@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Powerplants.Models;
+using Powerplants.Services;
 
 namespace Powerplants.Controllers
 {
@@ -8,9 +9,11 @@ namespace Powerplants.Controllers
     public class ProductionPlanController : ControllerBase
     {
         private readonly ILogger<ProductionPlanController> _logger;
-        public ProductionPlanController(ILogger<ProductionPlanController> logger)
+        private readonly IProductionPlanCalculator _productionPlanCalculator;
+        public ProductionPlanController(ILogger<ProductionPlanController> logger, IProductionPlanCalculator productionPlanCalculator)
         {
             _logger = logger;
+            _productionPlanCalculator = productionPlanCalculator;
         }
 
         [HttpPost]
@@ -18,12 +21,7 @@ namespace Powerplants.Controllers
         {
             _logger.LogInformation("Start creation of production plan");
 
-            var response = new
-            {
-                message = "Production plan created successfully",
-                payload = payload
-            };
-
+            var response = _productionPlanCalculator.CalculateProductionPlan(payload);
             return Ok(response);
         }
     }
