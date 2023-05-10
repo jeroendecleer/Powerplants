@@ -7,5 +7,6 @@
         public decimal Efficiency { get; set; }
         public decimal Pmin { get; set; }
         public decimal Pmax { get; set; }
+        public decimal CostPer1Mwh { get; set; }
     }
 }

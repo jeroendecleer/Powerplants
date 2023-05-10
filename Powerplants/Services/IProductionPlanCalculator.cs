@@ -5,6 +5,6 @@ namespace Powerplants.Services
 {
     public interface IProductionPlanCalculator
     {
-        List<ProductionPlanResponse> CalculateProductionPlan(Payload payload);
+        List<ProducedPower> CalculateProductionPlan(Payload payload);
     }
 }

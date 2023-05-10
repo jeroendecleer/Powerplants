@@ -2,10 +2,10 @@
 
 namespace Powerplants.Models.Response
 {
-    public class ProductionPlanResponse
+    public class ProducedPower
     {
         public string Name { get; set; }
-        [JsonPropertyName("P")]
+        [JsonPropertyName("p")]
         public decimal Power { get; set; }
     }
 }

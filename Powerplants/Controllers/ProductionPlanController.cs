@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Powerplants.Models;
+using Powerplants.Models.Response;
 using Powerplants.Services;
 
 namespace Powerplants.Controllers
@@ -20,9 +21,18 @@ namespace Powerplants.Controllers
         public IActionResult CreateProductionPlan([FromBody] Payload payload)
         {
             _logger.LogInformation("Start creation of production plan");
+            List<ProducedPower> productionPlans = new List<ProducedPower>();
+            try
+            {
+                productionPlans = _productionPlanCalculator.CalculateProductionPlan(payload);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                throw new Exception();
+            }
 
-            var response = _productionPlanCalculator.CalculateProductionPlan(payload);
-            return Ok(response);
+            return Ok(productionPlans);
         }
     }
 }

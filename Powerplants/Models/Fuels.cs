@@ -6,32 +6,28 @@ namespace Powerplants.Models
 {
     public class Fuel
     {
+        public Fuel()
+        {
+        }
+
         public Fuel(decimal gasEuroPerMWh, decimal kerosineEuroPerMWh, decimal co2EuroPerTon, decimal wind)
         {
             GasEuroPerMWh = gasEuroPerMWh;
             KerosineEuroPerMWh = kerosineEuroPerMWh;
             Co2EuroPerTon = co2EuroPerTon;
-            Wind = wind;
+            WindPercentage = wind;
         }
 
         [JsonPropertyName("gas(euro/MWh)")]
-        [Required]
-        [Min(0)]
         public decimal GasEuroPerMWh { get; set; }
 
         [JsonPropertyName("kerosine(euro/MWh)")]
-        [Required]
-        [Min(0)]
         public decimal KerosineEuroPerMWh { get; set; }
 
         [JsonPropertyName("co2(euro/ton)")]
-        [Required]
-        [Min(0)]
         public decimal Co2EuroPerTon { get; set; }
 
         [JsonPropertyName("wind(%)")]
-        [Required]
-        [Min(0)]
-        public decimal Wind { get; set; }
+        public decimal WindPercentage { get; set; }
     }
 }
